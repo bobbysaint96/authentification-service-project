@@ -1,8 +1,5 @@
 package com.bah.mcc.domain;
 
-import org.springframework.stereotype.Component;
-
-
 public class Customer {
 
 	long id;
