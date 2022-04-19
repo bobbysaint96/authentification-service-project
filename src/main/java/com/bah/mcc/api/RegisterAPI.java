@@ -16,23 +16,19 @@ import com.bah.mcc.util.JWTUtil;
 public class RegisterAPI {
 	JWTUtil jwtUtil = new JWTHelper();
 	
-	@PostMapping
+	@PostMapping(consumes = "application/json")
 	public ResponseEntity<?> registerCustomer(@RequestBody Customer cust) {
 		
-		if (cust.getId() != 0 || cust.getName() == null || cust.getEmail() == null || cust.getPassword() == null) {
+		if (cust.getName() == null || cust.getEmail() == null || cust.getPassword() == null) {
 			return ResponseEntity.badRequest().build();
 		}
 		
-		// Need to add registering to DB
 		String customersAPIbase = "http://localhost:8080/api/customers/";
 		RestTemplate template = new RestTemplate();
+		Customer newCust = template.postForObject(customersAPIbase, cust, Customer.class);
 		
-		//POST 'cust' to DB
-		
-		
-		
-		return null;
-		
+		ResponseEntity<?> response = ResponseEntity.ok(newCust);
+		return response;
 		
 	}
 	
