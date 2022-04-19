@@ -25,11 +25,9 @@ public class RegisterAPI {
 		
 		String customersAPIbase = "http://localhost:8080/api/customers/";
 		RestTemplate template = new RestTemplate();
-		Customer newCust = template.postForObject(customersAPIbase, cust, Customer.class);
+		ResponseEntity<?> response =  template.postForEntity(customersAPIbase, cust, ResponseEntity.class);
 		
-		ResponseEntity<?> response = ResponseEntity.ok(newCust);
 		return response;
-		
 	}
 	
 	
